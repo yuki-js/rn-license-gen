@@ -11,9 +11,15 @@ Currently it supports React Native & Android project.
 1. `rn-license-gen --help`
 1. `rn-license-gen`
 
-You might be able to use other Native/JS projects as well.
+This tool doens't provide license screens. Do it by yourself.
+
+You might be able to use it for other Native/JS platforms such as Cordova as well.
 
 # Contributions
+
+License templates are incompleted.
+
+Feel free to contribute.
 
 # License
 
