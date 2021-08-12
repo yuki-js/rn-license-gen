@@ -1,0 +1,25 @@
+{
+  "name": "rn-license-gen",
+  "version": "1.0.0",
+  "description": "License generator for React Native projects.",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuki-js/rn-license-gen.git"
+  },
+  "author": "yuki-js",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yuki-js/rn-license-gen/issues"
+  },
+  "homepage": "https://github.com/yuki-js/rn-license-gen#readme",
+  "type": "module",
+  "dependencies": {
+    "commander": "^8.1.0",
+    "license-checker": "^25.0.1"
+  }
+}
