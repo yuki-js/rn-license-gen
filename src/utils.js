@@ -2,7 +2,8 @@ import fs from "fs";
 import path from "path";
 import childProcess from "child_process";
 import checker from "license-checker";
-import { license2spdx } from "./license2spdx";
+import { license2spdx } from "./license2spdx.js";
+import spdxLicenseList from "spdx-license-list";
 /**
  * Runs `./gradlew generateLicenseJson` and generates json for android libraries.
  *
@@ -50,11 +51,17 @@ export function readLicenseJson(filePath) {
  */
 export function getLicenseText(license) {
   const spdx = license2spdx[license];
-  const licensePath = path.join(
-    path.dirname(new URL(import.meta.url).pathname),
-    `./templates/${spdx}.txt`
-  );
-  return fs.readFileSync(licensePath, "utf8");
+  if (spdx in spdxLicenseList) {
+    // is a valid SPDX license
+    return spdxLicenseList[spdx].licenseText;
+  } else {
+    // is a custom license
+    const licensePath = path.join(
+      path.dirname(new URL(import.meta.url).pathname),
+      `./templates/${spdx}.txt`
+    );
+    return fs.readFileSync(licensePath, "utf8");
+  }
 }
 
 /**
