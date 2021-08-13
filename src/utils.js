@@ -122,7 +122,7 @@ export function normalizeAndroidLicense(license) {
   return {
     name: `${license.artifactId.group}:${license.artifactId.name}:${license.artifactId.version}`,
     url: license.url,
-    license: license.normalizedLicense,
+    license: license2spdx[license.normalizedLicense],
     copyrightHolder: license.copyrightHolder,
     licenseText,
   };
