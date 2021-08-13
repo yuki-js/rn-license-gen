@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import childProcess from "child_process";
 import checker from "license-checker";
+import { license2spdx } from "./license2spdx";
 /**
  * Runs `./gradlew generateLicenseJson` and generates json for android libraries.
  *
@@ -48,9 +49,10 @@ export function readLicenseJson(filePath) {
  * @returns {string}
  */
 export function getLicenseText(license) {
+  const spdx = license2spdx[license];
   const licensePath = path.join(
     path.dirname(new URL(import.meta.url).pathname),
-    `./templates/${license}.txt`
+    `./templates/${spdx}.txt`
   );
   return fs.readFileSync(licensePath, "utf8");
 }
@@ -143,13 +145,13 @@ export function normalizeNodeLicense(licenses) {
       licenseText = fs.readFileSync(entity.licenseFile, "utf8");
     } else {
       console.warn(`${license} has no license file. Falling back...`);
-      licenseText = getLicenseText(entity.licenses.toLocaleLowerCase());
+      licenseText = getLicenseText(entity.licenses);
     }
     let licenseName;
     if (Array.isArray(entity.licenses)) {
       licenseName = entity.licenses.join(", ");
     } else {
-      licenseName = entity.licenses.toLocaleLowerCase;
+      licenseName = entity.licenses;
     }
     ret.push({
       name: license,
