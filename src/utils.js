@@ -3,7 +3,7 @@ import path from "path";
 import childProcess from "child_process";
 import checker from "license-checker";
 import { license2spdx } from "./license2spdx.js";
-import spdxLicenseList from "spdx-license-list";
+import spdxLicenseList from "spdx-license-list/full.js";
 /**
  * Runs `./gradlew generateLicenseJson` and generates json for android libraries.
  *
